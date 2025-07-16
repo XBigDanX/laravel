@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use Inertia\Inertia;
 
+// Homepage route with Inertia React component
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Homepage');  // resources/js/Pages/Home.jsx
 });
 
-use App\Http\Controllers\ProductController;
-
-Route::get('/products', [ProductController::class, 'index']);
+// Product resource routes using your ProductController (Inertia-powered)
+Route::resource('products', ProductController::class);
