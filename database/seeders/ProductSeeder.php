@@ -9,6 +9,39 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
+        // Example products for user_id 3
+        Product::create([
+            'name' => 'MacBook Pro 16',
+            'price' => 2499.00,
+            'description' => 'Apple M3 Pro, 16-inch Liquid Retina XDR display.',
+            'quantity' => 5,
+            'user_id' => 3,
+        ]);
+
+        Product::create([
+            'name' => 'Sony WH-1000XM5',
+            'price' => 399.99,
+            'description' => 'Industry-leading noise canceling headphones.',
+            'quantity' => 8,
+            'user_id' => 3,
+        ]);
+
+        // Example products for user_id 4
+        Product::create([
+            'name' => 'Dell XPS 13',
+            'price' => 1099.00,
+            'description' => '13.4-inch FHD+ display, Intel Core i7, 16GB RAM.',
+            'quantity' => 3,
+            'user_id' => 4,
+        ]);
+
+        Product::create([
+            'name' => 'Logitech MX Master 3S',
+            'price' => 99.99,
+            'description' => 'Advanced wireless mouse for creators.',
+            'quantity' => 15,
+            'user_id' => 4,
+        ]);
         Product::create([
             'name' => 'iPhone 15 Pro',
             'price' => 1099.00,

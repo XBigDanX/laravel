@@ -10,8 +10,11 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $products = auth()->check()
+            ? Product::where('user_id', auth()->id())->get()
+            : collect();
         return Inertia::render('Products', [
-            'products' => Product::all(),
+            'products' => $products,
         ]);
     }
 
@@ -22,16 +25,14 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
             'quantity' => 'required|integer',
         ]);
-
+        $validated['user_id'] = auth()->id();
         Product::create($validated);
-
         return redirect()->route('products.index');
     }
 

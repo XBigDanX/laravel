@@ -51,12 +51,19 @@ export default function Products() {
               <div className="flex-1 flex flex-col p-6">
                 <div className="flex items-center justify-between mb-2">
                   <h2 className="text-2xl font-bold text-gray-800 truncate">{product.name}</h2>
-                  <span className="inline-block bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
-                    ${product.price}
-                  </span>
+                  {product.quantity > 0 ? (
+                    <span className="inline-block bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
+                      In Stock
+                    </span>
+                  ) : (
+                    <span className="inline-block bg-red-100 text-red-600 text-xs font-semibold px-3 py-1 rounded-full">
+                      Out of Stock
+                    </span>
+                  )}
                 </div>
                 <p className="text-gray-500 mb-4 line-clamp-3">{product.description}</p>
                 <div className="flex items-center gap-4 mb-4">
+                  <span className="text-xl font-extrabold text-pink-600">${product.price}</span>
                   <span className="text-sm text-gray-400">Qty: {product.quantity}</span>
                 </div>
                 <div className="flex gap-2 mt-auto">
