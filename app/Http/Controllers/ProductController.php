@@ -22,19 +22,15 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
             'quantity' => 'required|integer',
-            'file' => 'nullable|file',
         ]);
 
-        $filePath = $request->file('file')?->store('uploads', 'public');
-
-        Product::create(array_merge($validated, [
-            'file_path' => $filePath,
-        ]));
+        Product::create($validated);
 
         return redirect()->route('products.index');
     }
@@ -48,19 +44,15 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
             'quantity' => 'required|integer',
-            'file' => 'nullable|file',
         ]);
 
-        $filePath = $request->file('file')?->store('uploads', 'public');
-
-        $product->update(array_merge($validated, [
-            'file_path' => $filePath,
-        ]));
+        $product->update($validated);
 
         return redirect()->route('products.index');
     }
